@@ -18,6 +18,7 @@ export default function MovieDetailsPage (){
         const genresList = [];
         genres.map(genre=>{
             genresList.push(genre.name);
+            return genresList;
         })
         return genresList;
     }
