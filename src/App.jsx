@@ -1,55 +1,25 @@
-// import React, { Component } from 'react';
-// import FeedbackOptions from './components/feedbackOptions/FeedbackOptions';
-// import Statistics from './components/statistics/Statistics';
-// import Section from './components/section/Section';
-// import Notification from './components/notification/Notification';
+import React  from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navigation from './components/Navigation/Navigation';
+import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
+import HomePage from './components/HomePage/HomePage';
+
   
-// class App extends Component {
-//   state = {
-//     good: 0,
-//     neutral: 0,
-//     bad: 0,
-//   };
+export default function App () {
+      
+    return (
+      <div>
+        <Navigation/>
 
-//   onLeaveFeedback = (feedback) => {
-//         this.setState(prevState => {
-//             return {
-//               [feedback]: prevState[feedback] + 1,
-//             };
-//         });
-//   }
-
-//   countTotalFeedback = () => {
-//       return this.state.good + this.state.neutral + this.state.bad;  
-//     };
-//   countPositiveFeedbackPercentage = () => {
-//       return this.state.good * 100 / this.countTotalFeedback();  
-//     };
+        
+        <Routes>
+          <Route index path="/" element={<HomePage/>}></Route>
+          <Route path="/movies/:movieId" element={<MovieDetailsPage/>}></Route>
+        </Routes>
+        
+      </div>
+    ); 
   
-//   render() {
-//     const {good,neutral,bad} = this.state;
-//     const total = this.countTotalFeedback();
-//     const positivePercentage = this.countPositiveFeedbackPercentage();
-    
-//     return (
-//       <div>
-//         <Section title="Please leave feedback">
-//           <FeedbackOptions
-//             options={['good', 'neutral', 'bad']}
-//             onClick={this.onLeaveFeedback} />
-//         </Section>
+};
 
-//         <Section title="Statistics">
-//           {total > 0 ? <Statistics
-//             good={good}
-//             neutral={neutral}
-//             bad={bad}
-//             total={total}
-//             positivePercentage={positivePercentage} /> : <Notification message="There is no feedback"></Notification>}
-//         </Section>
-//       </div>
-//     ); 
-//   }
-// };
 
-// export default  App;
