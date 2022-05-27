@@ -5,7 +5,6 @@ import {fetchTrendingMovie} from '../Api/Fetch';
 // import styles from './components/Navigation/Navigation.module.css';
 
 export default function HomePage (){
-    // const { url } = useRouteMatch();
     const [movies, setMovies] = useState(null);
     useEffect(()=>{
         fetchTrendingMovie().then(data=>setMovies(data.results));

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams} from "react-router-dom";
-
+import { Link, useParams, Outlet} from "react-router-dom";
 import {fetchMovieId} from '../Api/Fetch';
 
 // // import styles from './components/Navigation/Navigation.module.css';
@@ -51,9 +50,10 @@ export default function MovieDetailsPage (){
         </div>
         <hr></hr>
         <p>Additional information</p>
-        <Link to={`/movies/:movieId/cast`}>Cast</Link>
-        <Link to={`/movies/:movieId/reviews`}>Reviews</Link>
+        <Link to={`/movies/${ movieId }/cast`}>Cast</Link>
+        <Link to={`/movies/${ movieId }/reviews`}>Reviews</Link>
         <hr></hr>
+        <Outlet />
         </div>
                 
     );
