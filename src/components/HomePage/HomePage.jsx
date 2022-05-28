@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link} from "react-router-dom";
 import {fetchTrendingMovie} from '../Api/Fetch';
 
-// import styles from './components/Navigation/Navigation.module.css';
+import styles from '../HomePage/HomePage.module.css';
 
 export default function HomePage (){
     const [movies, setMovies] = useState(null);
@@ -12,7 +12,7 @@ export default function HomePage (){
 
     return(
         <>
-        <p>Trending today</p>
+        <p className={styles.title}>Trending today</p>
             {movies&&(
             <ul>
                 {movies.map(movie=>(

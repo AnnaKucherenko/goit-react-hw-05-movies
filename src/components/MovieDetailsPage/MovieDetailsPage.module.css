@@ -1,0 +1,14 @@
+.movieCard{
+    display: flex;
+}
+
+.movieCard_img{
+    height: 300px;
+}
+.movieCard_info{
+    margin-left: 15px;
+}
+.movieCard_link{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {fetchSearchMovies} from '../Api/Fetch';
 import Searchbar from "../SearchBar/SearchBar";
 
@@ -7,7 +7,7 @@ import Searchbar from "../SearchBar/SearchBar";
 export default function MoviesPage (){
     const [query,setQuery] = useState('');
     const [movies, setMovies] = useState(null);
-    
+        
     const handleSearch = evt => {
         setQuery(evt.target.value.toLowerCase())
     };
@@ -21,6 +21,7 @@ export default function MoviesPage (){
         setQuery(query);
         fetchSearchMovies(query).then(data=>setMovies(data.results));
         setQuery('');
+        
     };
 
     return(

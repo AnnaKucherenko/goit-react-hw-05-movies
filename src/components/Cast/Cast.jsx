@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
 import {fetchMovieCredits} from '../Api/Fetch';
 
-// // import styles from './components/Navigation/Navigation.module.css';
+import styles from '../Cast/Cast.module.css';
 
 export default function MovieDetailsPage (){
     const { movieId } = useParams();
@@ -20,7 +20,7 @@ export default function MovieDetailsPage (){
             <ul>
                 {cast.map(role=>(
                     <li key={role.id}>
-                        <img src={`https://image.tmdb.org/t/p/w500${role.profile_path}`} alt={role.name}></img>
+                        <img className={styles.roleImg} src={`https://image.tmdb.org/t/p/w500${role.profile_path}`} alt={role.name}></img>
                         <p>{role.name}</p>
                         <p>Character:{role.character}</p>
                     </li>

@@ -1,0 +1,14 @@
+.nav{
+    padding: 10px 15px;
+    border-bottom: 2px solid grey;
+}
+
+.nav_item{
+    color: black;
+    margin-right: 25px;
+    text-decoration: none;
+}
+
+.active{
+    color: red;
+}

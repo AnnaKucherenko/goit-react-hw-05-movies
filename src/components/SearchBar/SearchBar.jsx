@@ -14,8 +14,8 @@ export default function Searchbar ({onSubmit, onChange, query}) {
                         onChange={onChange}
                     />
 
-                    <button type="submit" className={styles.searchForm_button}>
-                        <span className={styles.searchForm_buttonLabel }>Search</span>
+                    <button type="submit" >
+                        <span >Search</span>
                     </button>
       
                 </form>

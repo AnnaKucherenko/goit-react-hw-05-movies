@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, Outlet} from "react-router-dom";
+import { Link, useParams, Outlet, useNavigate, useLocation} from "react-router-dom";
 import {fetchMovieId} from '../Api/Fetch';
 
-// // import styles from './components/Navigation/Navigation.module.css';
+import styles from '../MovieDetailsPage/MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage (){
+    const location = useLocation();
+    const hist = useNavigate();
     const { movieId } = useParams();
     const [title, setTitle] = useState('');
     const [overview, setOverview] = useState('');
@@ -19,7 +21,9 @@ export default function MovieDetailsPage (){
             genresList.push(genre.name);
             return genresList;
         })
-        return genresList;
+        
+        const genreString = genresList.join(" ");
+        return genreString;
     }
     
     useEffect(()=>{
@@ -33,13 +37,24 @@ export default function MovieDetailsPage (){
         });
     },[movieId]);
 
+    function history(){
+        if(location.pathname ===`/movies/${movieId}/cast`){
+            hist(-1);
+        }
+        if(location.pathname ===`/movies/${movieId}/reviews`){
+            hist(-1);
+        }
+        
+        hist(-1);
+    }
+
     return(
         <div>
-        <button type="button">Go back</button>
-        <div>
-            <img src={poster} alt={title}></img>
+        <button type="button" onClick={history}>Go back</button>
+        <div className={styles.movieCard}>
+            <img src={poster} alt={title} className={styles.movieCard_img}></img>
 
-            <div>
+            <div className={styles.movieCard_info}>
                 <h1>{title} ({date})</h1>
                 <p>User Score: {userScore}</p>
                 <h2>Overview</h2>
@@ -50,8 +65,11 @@ export default function MovieDetailsPage (){
         </div>
         <hr></hr>
         <p>Additional information</p>
-        <Link to={`/movies/${ movieId }/cast`}>Cast</Link>
-        <Link to={`/movies/${ movieId }/reviews`}>Reviews</Link>
+        <div className={styles.movieCard_link}>
+            <Link to={`/movies/${ movieId }/cast`}>Cast</Link>
+            <Link to={`/movies/${ movieId }/reviews`}>Reviews</Link>
+        </div>
+        
         <hr></hr>
         <Outlet />
         </div>
