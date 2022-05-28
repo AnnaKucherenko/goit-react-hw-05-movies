@@ -9,7 +9,7 @@ async function fetchWithErrorHandling(url = '', config = {}) {
 }
 
 export function fetchTrendingMovie() {
-  return fetchWithErrorHandling(`${BASE_URL}/trending/movie/week?api_key=a5d27c40376a4ea09985282eed260888`);
+  return fetchWithErrorHandling(`${BASE_URL}/trending/movie/day?api_key=a5d27c40376a4ea09985282eed260888`);
 }
 
 export function fetchSearchMovies (query) {

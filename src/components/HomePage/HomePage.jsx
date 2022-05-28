@@ -12,6 +12,7 @@ export default function HomePage (){
 
     return(
         <>
+        <p>Trending today</p>
             {movies&&(
             <ul>
                 {movies.map(movie=>(
