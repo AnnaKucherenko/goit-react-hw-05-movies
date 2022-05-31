@@ -6,7 +6,7 @@ import styles from '../MovieDetailsPage/MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage (){
     const location = useLocation();
-    const hist = useNavigate();
+    const history = useNavigate();
     const { movieId } = useParams();
     const [title, setTitle] = useState('');
     const [overview, setOverview] = useState('');
@@ -15,6 +15,11 @@ export default function MovieDetailsPage (){
     const [poster, setPoster] = useState('');
     const [userScore, setUserScore] = useState('');
     
+    const goBack = ()=> {
+        history(location.state.from);
+    };
+
+
     function createListOfGenres (genres){
         const genresList = [];
         genres.map(genre=>{
@@ -25,32 +30,32 @@ export default function MovieDetailsPage (){
         const genreString = genresList.join(" ");
         return genreString;
     }
-    
+
     useEffect(()=>{
         fetchMovieId(movieId).then(data=>{
+            setPoster(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
             setTitle(data.original_title);
             setOverview(data.overview);
             setDate(data.release_date.slice(0, 4));
             setGenres(createListOfGenres(data.genres));
-            setPoster(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
             setUserScore(data.vote_average);
         });
     },[movieId]);
 
-    function history(){
-        if(location.pathname ===`/movies/${movieId}/cast`){
-            hist(-1);
-        }
-        if(location.pathname ===`/movies/${movieId}/reviews`){
-            hist(-1);
-        }
+    // function history(){
+    //     if(location.pathname ===`/movies/${movieId}/cast`){
+    //         hist(-1);
+    //     }
+    //     if(location.pathname ===`/movies/${movieId}/reviews`){
+    //         hist(-1);
+    //     }
         
-        hist(-1);
-    }
-
+    //     hist(-1);
+    // }
+   
     return(
         <div>
-        <button type="button" onClick={history}>Go back</button>
+        <button type="button" onClick={goBack}>Go back</button>
         <div className={styles.movieCard}>
             <img src={poster} alt={title} className={styles.movieCard_img}></img>
 

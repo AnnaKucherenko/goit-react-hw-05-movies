@@ -1,15 +1,15 @@
 import React, {  useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {fetchSearchMovies} from '../Api/Fetch';
 import Searchbar from "../SearchBar/SearchBar";
 
-
 export default function MoviesPage (){
+    const location = useLocation();
     const [query,setQuery] = useState('');
     const [movies, setMovies] = useState(null);
-        
+    
     const handleSearch = evt => {
-        setQuery(evt.target.value.toLowerCase())
+        setQuery(evt.target.value.toLowerCase());
     };
 
     const handleSubmit = evt=>{
@@ -20,7 +20,7 @@ export default function MoviesPage (){
         }
         setQuery(query);
         fetchSearchMovies(query).then(data=>setMovies(data.results));
-        setQuery('');
+        // setQuery('');
         
     };
 
@@ -31,7 +31,12 @@ export default function MoviesPage (){
             <ul>
                 {movies.map(movie=>(
                     <li key={movie.id}>
-                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                        <Link to={{
+                            pathname:`/movies/${movie.id}`,
+                            state: {from: location},
+                        }}>
+                            {movie.title}
+                        </Link>
                     </li>
                 ))}
             </ul> 
