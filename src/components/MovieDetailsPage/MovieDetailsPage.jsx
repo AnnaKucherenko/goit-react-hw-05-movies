@@ -14,12 +14,12 @@ export default function MovieDetailsPage (){
     const [genres, setGenres] = useState('');
     const [poster, setPoster] = useState('');
     const [userScore, setUserScore] = useState('');
-    
+       
     const goBack = ()=> {
-        history(location.state.from);
+        history(location.state);
+         
     };
-
-
+   
     function createListOfGenres (genres){
         const genresList = [];
         genres.map(genre=>{
@@ -41,21 +41,10 @@ export default function MovieDetailsPage (){
             setUserScore(data.vote_average);
         });
     },[movieId]);
-
-    // function history(){
-    //     if(location.pathname ===`/movies/${movieId}/cast`){
-    //         hist(-1);
-    //     }
-    //     if(location.pathname ===`/movies/${movieId}/reviews`){
-    //         hist(-1);
-    //     }
-        
-    //     hist(-1);
-    // }
    
     return(
         <div>
-        <button type="button" onClick={goBack}>Go back</button>
+        <button type="button" onClick={goBack} >Go back</button>
         <div className={styles.movieCard}>
             <img src={poster} alt={title} className={styles.movieCard_img}></img>
 
@@ -71,8 +60,8 @@ export default function MovieDetailsPage (){
         <hr></hr>
         <p>Additional information</p>
         <div className={styles.movieCard_link}>
-            <Link to={`/movies/${ movieId }/cast`}>Cast</Link>
-            <Link to={`/movies/${ movieId }/reviews`}>Reviews</Link>
+            <Link to={`/movies/${ movieId }/cast` } state={location.state}>Cast</Link>
+            <Link to={`/movies/${ movieId }/reviews`} state={location.state}>Reviews</Link>
         </div>
         
         <hr></hr>
